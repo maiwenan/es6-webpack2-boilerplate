@@ -1,3 +1,5 @@
+import './style';
+
 export function welcome(name) {
   console.log(`welcome to ${name} page...`);
 }

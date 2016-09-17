@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --config config/config.dev.js",
-    "eslint": "eslint ./",
-    "eslint:watch": "esw -w ./"
+    "eslint": "eslint ./config ./src",
+    "eslint:watch": "esw -w ./config ./src",
+    "sasslint": "sass-lint -v -q",
+    "build": "npm run eslint && npm run sasslint && webpack --progress --color --config config/config.prod.js"
   },
   "keywords": [
     "es6",
@@ -37,6 +39,7 @@
     "json-loader": "^0.5.4",
     "node-sass": "^3.9.3",
     "postcss-loader": "^0.13.0",
+    "sass-lint-rules": "^1.0.2",
     "sass-loader": "^4.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
