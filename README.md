@@ -1,4 +1,4 @@
-# Es6-Webpack2-Boilerplate
+# Es6-Webpack2-Boilerplate [![npm version](https://badge.fury.io/js/html-inject-webpack-plugin.svg)](https://badge.fury.io/js/html-inject-webpack-plugin)
 
 基于 `babel6` 和 `webpack2` 构建的前端开发工作流
 
@@ -22,7 +22,7 @@ $ cd my-app
 $ npm install
 ```
 
-*注意 : *修改 `package.json` 文件相关的内容，如 : `name`, `description`, `author`, `repository` 等
+**注意 :** 修改 `package.json` 文件相关的内容，如 : `name`, `description`, `author`, `repository` 等
 
 ## 使用
 
