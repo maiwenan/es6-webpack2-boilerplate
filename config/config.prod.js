@@ -4,17 +4,17 @@ const webpackMerge = require('webpack-merge');
 const commonConfig = require('./config.common');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const sassExtract = new ExtractTextPlugin('[name].[chunkhash].css');
-const lessExtract = new ExtractTextPlugin('[name].[chunkhash].css');
+const sassExtract = new ExtractTextPlugin('[name].[chunkhash:8].css');
+const lessExtract = new ExtractTextPlugin('[name].[chunkhash:8].css');
 
 const devConfig = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
     path: path.resolve(__dirname, '../dist'),
-    filename: '[name].[chunkhash].js',
-    sourceMapFilename: '[name].[chunkhash].map',
-    chunkFilename: '[id].[chunkhash].js'
+    filename: '[name].[chunkhash:8].js',
+    sourceMapFilename: '[name].[chunkhash:8].map',
+    chunkFilename: '[id].[chunkhash:8].js'
   },
 
   module: {

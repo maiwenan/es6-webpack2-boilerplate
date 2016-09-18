@@ -4,11 +4,13 @@
   "description": "a boilerpalte for web devolopment with es6 and webpack2",
   "main": "index.js",
   "scripts": {
-    "start": "webpack-dev-server --config config/config.dev.js",
+    "start": "webpack-dashboard -- webpack-dev-server --config config/config.dev.js",
     "eslint": "eslint ./config ./src",
     "eslint:watch": "esw -w ./config ./src",
     "sasslint": "sass-lint -v -q",
-    "build": "npm run eslint && npm run sasslint && webpack --progress --color --config config/config.prod.js"
+    "clean": "rm -rf dist",
+    "build": "npm run clean && npm run eslint && npm run sasslint && webpack --progress --color --config config/config.prod.js",
+    "postpublish": "git push --all && git push origin --tags"
   },
   "keywords": [
     "es6",
@@ -44,6 +46,7 @@
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
     "webpack": "^2.1.0-beta.22",
+    "webpack-dashboard": "^0.1.8",
     "webpack-dev-server": "^2.1.0-beta.4",
     "webpack-merge": "^0.14.1"
   }

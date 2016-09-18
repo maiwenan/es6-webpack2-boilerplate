@@ -1,6 +1,7 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./config.common');
+const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const devConfig = webpackMerge(commonConfig, {
   debug: true,
@@ -32,7 +33,8 @@ const devConfig = webpackMerge(commonConfig, {
       'process.env': {
         NODE_ENV: "'development'"
       }
-    })
+    }),
+    new DashboardPlugin()
   ],
 
   devServer: {
