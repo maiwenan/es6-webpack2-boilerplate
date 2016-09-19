@@ -24,7 +24,7 @@ const commonConfig = {
         loader: 'json'
       },
       {
-        test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)$/,
+        test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)(\?.*)?(#.*)?$/,
         loader: 'url?name=[name].[hash].[ext]'
       }
     ]

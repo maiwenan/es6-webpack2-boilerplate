@@ -7,5 +7,13 @@ import {
   util
 } from '../../components/util';
 
-util();
-welcome('home');
+function home() {
+  util();
+  welcome('home');
+
+  return 'home';
+}
+
+home();
+
+export default home;
