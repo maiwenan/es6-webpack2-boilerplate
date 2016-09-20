@@ -1,6 +1,6 @@
 {
   "name": "es6-webpack2-boilerplate",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "a boilerpalte for web devolopment with es6 and webpack2",
   "main": "index.js",
   "scripts": {
