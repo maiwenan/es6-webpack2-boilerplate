@@ -1,4 +1,4 @@
-# Es6-Webpack2-Boilerplate [![npm version](https://badge.fury.io/js/html-inject-webpack-plugin.svg)](https://badge.fury.io/js/html-inject-webpack-plugin)
+# Es6-Webpack2-Boilerplate [![npm version](https://badge.fury.io/js/es6-webpack2-boilerplate.svg)](https://badge.fury.io/js/es6-webpack2-boilerplate) [![Build Status](https://travis-ci.org/maiwenan/es6-webpack2-boilerplate.svg?branch=master)](https://travis-ci.org/maiwenan/es6-webpack2-boilerplate) [![Coverage Status](https://coveralls.io/repos/github/maiwenan/es6-webpack2-boilerplate/badge.svg)](https://coveralls.io/github/maiwenan/es6-webpack2-boilerplate)
 
 基于 `babel6` 和 `webpack2` 构建的前端开发工作流
 
