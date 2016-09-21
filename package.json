@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "webpack-dashboard -- webpack-dev-server --config config/config.dev.js",
+    "debug": "webpack-dashboard -- webpack-dev-server --config config/config.debug.js",
     "eslint": "eslint ./config ./src ./test",
     "eslint:watch": "esw -w ./config ./src ./test",
     "sasslint": "sass-lint -v -q",
@@ -16,6 +17,10 @@
     "clean": "rm -rf dist && rm -rf coverage",
     "build": "npm run clean && npm run test && webpack --progress --color --config config/config.prod.js",
     "postpublish": "git push --all && git push origin --tags"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/maiwenan/es6-webpack2-boilerplate.git"
   },
   "keywords": [
     "es6",
@@ -33,6 +38,8 @@
     "babel-preset-es2015": "^6.14.0",
     "babel-preset-react": "^6.11.1",
     "babel-preset-stage-2": "^6.13.0",
+    "browser-sync": "^2.16.0",
+    "browser-sync-webpack-plugin": "^1.1.2",
     "chai": "^3.5.0",
     "coveralls": "^2.11.13",
     "css-loader": "^0.25.0",

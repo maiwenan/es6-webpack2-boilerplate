@@ -2,6 +2,7 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./config.common');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const devConfig = webpackMerge(commonConfig, {
   debug: true,
@@ -38,7 +39,7 @@ const devConfig = webpackMerge(commonConfig, {
   ],
 
   devServer: {
-    host: 'localhost',
+    host: '0.0.0.0',
     port: 3000,
     // inline: true,  // 已默认开启
     // hot: true,  // 已默认开启

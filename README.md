@@ -32,6 +32,12 @@ $ npm install
 npm start
 ```
 
+* 启动移动端调试的开发模式，启动后可以访问 `http://localhost:3001/remote-debug` 进行调试
+
+```
+npm run debug
+```
+
 * 发布阶段运行下面的命令对前端资源进行构建
 
 ```
