@@ -2,6 +2,7 @@
 
 基于 `babel6` 和 `webpack2` 构建的前端开发工作流
 
+
 ## 项目规范
 
 该模板是遵循下面的目录规范进行构建的，如果要使用不同的目录结构，需要修改对应的配置文件（主要是入口文件和静态页面文件）
@@ -14,6 +15,34 @@
   * `src/vendor` 目录下面应该放置一些不经常更新的模块，这样做主要是为了更好使用缓存
   * 每个模块如果被 2 个及以上的页面所共用，则会提取出来放到 `common.js` 文件中
 
+
+## 特性
+
+* [x] [babel](https://babeljs.io)
+  * [x] [es2015](http://babeljs.io/docs/plugins/preset-es2015)
+  * [x] [stage-2](https://babeljs.io/docs/plugins/preset-stage-2)
+  * [x] [react](https://babeljs.io/docs/plugins/preset-react)
+  * [x] [airbnb](https://github.com/airbnb/babel-preset-airbnb)
+  * [x] [babili](https://github.com/babel/babili)
+* [x] [webpack2](https://github.com/webpack/webpack)
+* [x] lint
+  * [x] [eslint](http://eslint.org/)
+  * [x] [sass-lint](https://github.com/sasstools/sass-lint)
+* [x] test
+  * [x] [mocha](https://mochajs.org)
+  * [x] [chai](http://chaijs.com)
+  * [x] [jsdom](https://github.com/tmpvar/jsdom)
+  * [x] [karma](https://karma-runner.github.io/1.0/index.html)
+* [x] css
+  * [x] [sass](http://sass-lang.com)
+  * [x] [less](http://lesscss.org)
+  * [x] [postcss](http://postcss.org)
+* [x] [browser-sync](https://www.browsersync.io)
+* [x] coverage
+  * [x] [istanbul](https://github.com/gotwarlost/istanbul)
+  * [x] [coveralls](https://github.com/nickmerwin/node-coveralls)
+
+
 ## 下载
 
 ```
@@ -23,6 +52,7 @@ $ npm install
 ```
 
 **注意 :** 修改 `package.json` 文件相关的内容，如 : `name`, `description`, `author`, `repository` 等
+
 
 ## 使用
 
@@ -43,6 +73,7 @@ npm run debug
 ```
 npm run build
 ```
+
 
 ## License
 

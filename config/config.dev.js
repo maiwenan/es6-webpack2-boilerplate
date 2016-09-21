@@ -2,7 +2,6 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./config.common');
 const DashboardPlugin = require('webpack-dashboard/plugin');
-const BrowserSyncPlugin = require('browser-sync-webpack-plugin');
 
 const devConfig = webpackMerge(commonConfig, {
   debug: true,

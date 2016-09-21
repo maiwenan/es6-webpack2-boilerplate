@@ -12,6 +12,9 @@
       "presets": [
         ["es2015", {"modules": 'commonjs'}]
       ]
+    },
+    "production": {
+      "presets": ["babili"]
     }
   }
 }
