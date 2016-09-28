@@ -1,3 +1,4 @@
+/* @flow */
 import './style';
 import '../../vendor';
 import {
