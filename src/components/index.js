@@ -8,7 +8,7 @@ export function welcome(name: string) {
 }
 
 export function unUsed(name?: string) {
-  console.log(`unused ${name} page`);
+  console.log(`unused ${name || ''} page`);
 
   return name;
 }

@@ -26,6 +26,7 @@
   * [x] [babili](https://github.com/babel/babili)
 * [x] [webpack2](https://github.com/webpack/webpack)
 * [x] lint
+  * [x] [flow](https://flowtype.org/)
   * [x] [eslint](http://eslint.org/)
   * [x] [sass-lint](https://github.com/sasstools/sass-lint)
 * [x] test
