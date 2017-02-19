@@ -5,7 +5,7 @@ const util = require('./util');
 let entryMap = util.getEntries(path.resolve(__dirname, '../src/views'));
 const chunks = Object.keys(entryMap);
 
-entryMap['vendor'] = [];
+// entryMap['vendor'] = [];
 
 const commonConfig = {
   context: __dirname,
@@ -17,24 +17,28 @@ const commonConfig = {
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel']
+        loaders: ['babel-loader']
       },
       {
         test: /\.json$/,
-        loader: 'json'
+        loader: 'json-loader'
       },
       {
         test: /\.(jpg|png|gif|eot|svg|ttf|woff|woff2)(\?.*)?(#.*)?$/,
-        loader: 'url?name=[name].[hash].[ext]'
+        loader: 'url-loader?name=[name].[hash].[ext]'
       }
     ]
   },
 
   resolve: {
-    extensions: ['', '.js', '.jsx', '.json', '.scss', '.less', '.css']
+    extensions: ['.js', '.jsx', '.json', '.scss', '.less', '.css']
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      postcss: [autoprefixer]
+    }),
+
     // 第 1 种方法：
 
     // 把项目所依赖的第三方类库或者一般不会怎么修改的公共类库打包在一起
@@ -115,9 +119,7 @@ const commonConfig = {
     //   name: 'vendor',
     //   minChunks: Infinity
     // })
-  ].concat(util.getHtmlWebpackPlugins(path.resolve(__dirname, '../views'))),
-
-  postcss: [autoprefixer]
+  ].concat(util.getHtmlWebpackPlugins(path.resolve(__dirname, '../views')))
 };
 
 module.exports = commonConfig;

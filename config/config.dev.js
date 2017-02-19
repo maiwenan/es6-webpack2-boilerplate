@@ -4,8 +4,6 @@ const commonConfig = require('./config.common');
 const DashboardPlugin = require('webpack-dashboard/plugin');
 
 const devConfig = webpackMerge(commonConfig, {
-  debug: true,
-
   devtool: 'inline-source-map',
 
   output: {
@@ -19,16 +17,19 @@ const devConfig = webpackMerge(commonConfig, {
     loaders: [
       {
         test: /\.scss$/,
-        loaders: ['style', 'css', 'postcss', 'sass']
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
       },
       {
         test: /\.less/,
-        loaders: ['style', 'css', 'postcss', 'less']
+        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
       }
     ]
   },
 
   plugins: [
+    new webpack.LoaderOptionsPlugin({
+      debug: true
+    }),
     new webpack.DefinePlugin({
       'process.env': {
         NODE_ENV: "'development'"

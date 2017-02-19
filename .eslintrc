@@ -1,5 +1,6 @@
 {
   "parser": "babel-eslint",
+  "plugins": ["flowtype-errors"],
   "extends": ["standard", "standard-react"],
   "globals": {
     "alert": false,
@@ -16,6 +17,7 @@
     "no-unused-vars": 1,  // 取消禁止未使用过的变量，主要是因为 react-unknow-prop 原因
     "no-useless-constructor": 1,  // 取消禁用不必要的构造函数，主要是为了生存文档时有 props 参数文档
     "react/jsx-no-bind": 0,
-    "no-unneeded-ternary": 0  // 三目运算
+    "no-unneeded-ternary": 0,  // 三目运算
+    "flowtype-errors/show-errors": 2  // check flow type
   }
 }

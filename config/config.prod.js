@@ -22,7 +22,7 @@ const devConfig = webpackMerge(commonConfig, {
       {
         test: /\.scss$/,
         loader: sassExtract.extract({
-          fallbackLoader: 'style',
+          fallbackLoader: 'style-loader',
           loader: [
             'css-loader?modules&minimize&sourceMap&importLoaders=2',
             'postcss-loader',
@@ -33,7 +33,7 @@ const devConfig = webpackMerge(commonConfig, {
       {
         test: /\.less/,
         loaders: lessExtract.extract({
-          fallbackLoader: 'style',
+          fallbackLoader: 'style-loader',
           loader: [
             'css-loader?modules&minimize&sourceMap&importLoaders=2',
             'postcss-loader',
