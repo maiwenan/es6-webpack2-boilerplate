@@ -1,6 +1,5 @@
 const path = require('path');
 const webpack = require('webpack');
-const autoprefixer = require('autoprefixer');
 const util = require('./util');
 let entryMap = util.getEntries(path.resolve(__dirname, '../src/views'));
 const chunks = Object.keys(entryMap);
@@ -13,11 +12,11 @@ const commonConfig = {
   entry: entryMap,
 
   module: {
-    loaders: [
+    rules: [
       {
         test: /\.jsx?$/,
         exclude: /node_modules/,
-        loaders: ['babel-loader']
+        use: ['babel-loader']
       },
       {
         test: /\.json$/,
@@ -35,10 +34,6 @@ const commonConfig = {
   },
 
   plugins: [
-    new webpack.LoaderOptionsPlugin({
-      postcss: [autoprefixer]
-    }),
-
     // 第 1 种方法：
 
     // 把项目所依赖的第三方类库或者一般不会怎么修改的公共类库打包在一起
@@ -86,24 +81,23 @@ const commonConfig = {
 
     // 第 4 种方法：这种和想要的最接近
 
-    // 把项目所依赖的第三方类库或者一般不会怎么修改的公共类库打包在一起
-    new webpack.optimize.CommonsChunkPlugin({
-      name: 'vendor',
-      minChunks: function (module, count) {
-        if ((module.context.indexOf('/node_modules') !== -1 ||
-          module.context.indexOf('/vendor') !== -1) && count > 1) {
-          return true;
-        }
-      }
-    }),
-
     // 把项目的公共模块（现在的配置被是 2 个模块以上共享的模块）打包在一起
     new webpack.optimize.CommonsChunkPlugin({
       name: 'commons',
       minChunks: 2,
       chunks: chunks
-    })
+    }),
 
+    // 把项目所依赖的第三方类库或者一般不会怎么修改的公共类库打包在一起
+    new webpack.optimize.CommonsChunkPlugin({
+      name: 'vendor',
+      minChunks: function (module, count) {
+        if (module.context.indexOf('/node_modules') !== -1 ||
+          module.context.indexOf('/vendor') !== -1) {
+          return true;
+        }
+      }
+    })
 
     // 第 5 种方法：
 
