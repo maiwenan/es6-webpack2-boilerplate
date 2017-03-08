@@ -1,7 +1,16 @@
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./config.common');
+const autoprefixer = require('autoprefixer');
 const DashboardPlugin = require('webpack-dashboard/plugin');
+const postcssConfig = {
+  loader: 'postcss-loader',
+  options: {
+    plugins: function () {
+      return [autoprefixer];
+    }
+  }
+};
 
 const devConfig = webpackMerge(commonConfig, {
   devtool: 'inline-source-map',
@@ -14,14 +23,32 @@ const devConfig = webpackMerge(commonConfig, {
   },
 
   module: {
-    loaders: [
+    rules: [
+      {
+        test: /\.css$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          postcssConfig
+        ]
+      },
       {
         test: /\.scss$/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'sass-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          postcssConfig,
+          'sass-loader'
+        ]
       },
       {
         test: /\.less/,
-        loaders: ['style-loader', 'css-loader', 'postcss-loader', 'less-loader']
+        use: [
+          'style-loader',
+          'css-loader',
+          postcssConfig,
+          'less-loader'
+        ]
       }
     ]
   },

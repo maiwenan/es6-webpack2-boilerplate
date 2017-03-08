@@ -2,10 +2,19 @@ const path = require('path');
 const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const commonConfig = require('./config.common');
+const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const sassExtract = new ExtractTextPlugin('[name].[chunkhash:8].css');
 const lessExtract = new ExtractTextPlugin('[name].[chunkhash:8].css');
+const postcssConfig = {
+  loader: 'postcss-loader',
+  options: {
+    plugins: function () {
+      return [autoprefixer];
+    }
+  }
+};
 
 const devConfig = webpackMerge(commonConfig, {
   devtool: 'source-map',
@@ -18,14 +27,24 @@ const devConfig = webpackMerge(commonConfig, {
   },
 
   module: {
-    loaders: [
+    rules: [
+      {
+        test: /\.css$/,
+        loader: sassExtract.extract({
+          fallbackLoader: 'style-loader',
+          loader: [
+            'css-loader?minimize&sourceMap&importLoaders=2',
+            postcssConfig
+          ]
+        })
+      },
       {
         test: /\.scss$/,
         loader: sassExtract.extract({
           fallbackLoader: 'style-loader',
           loader: [
-            'css-loader?modules&minimize&sourceMap&importLoaders=2',
-            'postcss-loader',
+            'css-loader?minimize&sourceMap&importLoaders=2',
+            postcssConfig,
             'sass-loader?outputStyle=expanded&sourceMap&sourceMapContents'
           ]
         })
@@ -35,8 +54,8 @@ const devConfig = webpackMerge(commonConfig, {
         loaders: lessExtract.extract({
           fallbackLoader: 'style-loader',
           loader: [
-            'css-loader?modules&minimize&sourceMap&importLoaders=2',
-            'postcss-loader',
+            'css-loader?minimize&sourceMap&importLoaders=2',
+            postcssConfig,
             'less-loader?outputStyle=expanded&sourceMap&sourceMapContents'
           ]
         })
@@ -50,7 +69,6 @@ const devConfig = webpackMerge(commonConfig, {
         NODE_ENV: "'production'"
       }
     }),
-    new webpack.optimize.DedupePlugin(),
     sassExtract,
     lessExtract,
     new webpack.optimize.UglifyJsPlugin({
