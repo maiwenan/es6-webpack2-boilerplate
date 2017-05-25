@@ -5,8 +5,9 @@ const commonConfig = require('./config.common');
 const autoprefixer = require('autoprefixer');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
-const sassExtract = new ExtractTextPlugin('[name].[chunkhash:8].css');
-const lessExtract = new ExtractTextPlugin('[name].[chunkhash:8].css');
+const lessExtract = new ExtractTextPlugin('[name].[chunkhash:8]-one.css');
+const cssExtract = new ExtractTextPlugin('[name].[chunkhash:8]-two.css');
+const sassExtract = new ExtractTextPlugin('[name].[chunkhash:8]-three.css');
 const postcssConfig = {
   loader: 'postcss-loader',
   options: {
@@ -16,33 +17,34 @@ const postcssConfig = {
   }
 };
 
-const devConfig = webpackMerge(commonConfig, {
+const proConfig = webpackMerge(commonConfig, {
   devtool: 'source-map',
 
   output: {
     path: path.resolve(__dirname, '../dist'),
     filename: '[name].[chunkhash:8].js',
     sourceMapFilename: '[name].[chunkhash:8].map',
-    chunkFilename: '[id].[chunkhash:8].js'
+    chunkFilename: '[id].[chunkhash:8].js',
+    publicPath: 'http://kfy.qianchuan.info/'
   },
 
   module: {
     rules: [
       {
         test: /\.css$/,
-        loader: sassExtract.extract({
+        use: cssExtract.extract({
           fallbackLoader: 'style-loader',
-          loader: [
-            'css-loader?minimize&sourceMap&importLoaders=2',
+          use: [
+            'css-loader?minimize&sourceMap&importLoaders=1',
             postcssConfig
           ]
         })
       },
       {
         test: /\.scss$/,
-        loader: sassExtract.extract({
+        use: sassExtract.extract({
           fallbackLoader: 'style-loader',
-          loader: [
+          use: [
             'css-loader?minimize&sourceMap&importLoaders=2',
             postcssConfig,
             'sass-loader?outputStyle=expanded&sourceMap&sourceMapContents'
@@ -51,9 +53,9 @@ const devConfig = webpackMerge(commonConfig, {
       },
       {
         test: /\.less/,
-        loaders: lessExtract.extract({
+        use: lessExtract.extract({
           fallbackLoader: 'style-loader',
-          loader: [
+          use: [
             'css-loader?minimize&sourceMap&importLoaders=2',
             postcssConfig,
             'less-loader?outputStyle=expanded&sourceMap&sourceMapContents'
@@ -69,8 +71,9 @@ const devConfig = webpackMerge(commonConfig, {
         NODE_ENV: "'production'"
       }
     }),
-    sassExtract,
     lessExtract,
+    cssExtract,
+    sassExtract,
     new webpack.optimize.UglifyJsPlugin({
       compress: {
         warnings: false
@@ -79,4 +82,4 @@ const devConfig = webpackMerge(commonConfig, {
   ]
 });
 
-module.exports = devConfig;
+module.exports = proConfig;
